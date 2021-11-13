@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { View, SafeAreaView, Image, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import COLORS from '../components/Colors';
+import ButtonsTextName from '../components/collections/ButtonsTextName';
+import COLORS from '../components/collections/Colors';
 import AddToCart from '../components/requests/AddToCart';
 
 const ProductDetailScreen = ({ navigation, route }) => {
     const userdata = route.params?.userdata
     const productdetails = route.params?.pdata
-    console.log("hey hey kfjkdljfkldfj", userdata.userid)
 
-    const [countquantity, setCountQuantity] = useState(0);
+    const [countquantity, setCountQuantity] = useState(1);
 
     function handlecount(quantity) {
         console.log(quantity)
-        if (quantity == "plus") {
+        if (quantity == ButtonsTextName.plus) {
             setCountQuantity(countquantity + 1)
         }
-        if (quantity == "minus") {
+        if (quantity == ButtonsTextName.munis) {
             setCountQuantity(countquantity - 1)
         }
     }
@@ -56,7 +56,7 @@ const ProductDetailScreen = ({ navigation, route }) => {
                     <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                         <View><Text style={{ fontSize: 18, fontWeight: 'bold' }}>Best choice</Text></View>
 
-                        <TouchableOpacity style={style.addtocartbtn} onPress={() => AddToCart(productdetails.pid, userdata.userid)} >
+                        <TouchableOpacity style={style.addtocartbtn} onPress={() => AddToCart(productdetails.pid, userdata.userid, countquantity)} >
                             <Text
                                 style={{ color: COLORS.white, fontSize: 15, fontWeight: 'bold' }}>
                                 Add To Cart
@@ -122,7 +122,7 @@ const ProductDetailScreen = ({ navigation, route }) => {
                                 alignItems: 'center',
                             }}>
                             <TouchableOpacity
-                                onPress={() => handlecount("minus")}
+                                onPress={() => handlecount(ButtonsTextName.munis)}
                                 style={style.borderBtn}>
                                 <Text style={style.borderBtnText}>-</Text>
                             </TouchableOpacity>
@@ -139,7 +139,7 @@ const ProductDetailScreen = ({ navigation, route }) => {
 
                             <TouchableOpacity
                                 style={style.borderBtn}
-                                onPress={() => handlecount("plus")}>
+                                onPress={() => handlecount(ButtonsTextName.plus)}>
                                 <Text style={style.borderBtnText}>+</Text>
                             </TouchableOpacity>
                         </View>

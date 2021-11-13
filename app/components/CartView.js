@@ -4,6 +4,7 @@ import Axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import ApiAddress from './requests/ApiAddress';
+import ButtonsTextName from './collections/ButtonsTextName';
 
 
 
@@ -46,25 +47,7 @@ function CartView({ userdata, setCountCartedItem, setOrderItems }) {
 
     }, [deleteclicked, cartedproduct, setCountCartedItem])
 
-    // useEffect(() => {
-    //     setCheckedData(
-    //         checkeddata.map(d => {
-    //             return (
-    //                 {
-    //                     checked: false,
-    //                     pid: d.productid,
-    //                     pname: d.productname,
-    //                     pdesc: d.productdesc,
-    //                     pprice: d.productprice,
-    //                     pimage: d.productimage
 
-    //                 }
-    //             )
-    //         })
-    //     )
-    // })
-
-    //Rendering the carted Products items user anytime
     const RenderItems = () => {
 
         try {
@@ -312,7 +295,7 @@ function CartView({ userdata, setCountCartedItem, setOrderItems }) {
                                             <View style={styles.counterCount}>
                                                 <TouchableOpacity
                                                     style={styles.plus_minus}
-                                                    onPress={() => handleItemCount("minus", val.cartid, val.quantity)}>
+                                                    onPress={() => handleItemCount(ButtonsTextName.munis, val.cartid, val.quantity)}>
                                                     <Text style={{ fontSize: 40, color: "#cb6592" }}>-</Text>
 
 
@@ -330,7 +313,7 @@ function CartView({ userdata, setCountCartedItem, setOrderItems }) {
 
                                                 <TouchableOpacity
                                                     style={styles.plus_minus}
-                                                    onPress={() => handleItemCount("plus", val.cartid, val.quantity)}
+                                                    onPress={() => handleItemCount(ButtonsTextName.plus, val.cartid, val.quantity)}
                                                 >
                                                     <Text style={{ fontSize: 35, color: "#cb6592" }}>+</Text>
                                                 </TouchableOpacity>

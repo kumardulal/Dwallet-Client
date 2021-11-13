@@ -1,11 +1,12 @@
 import Axios from 'axios';
 import ApiAddress from './ApiAddress'
-function AddToCart(cartedproductid, cartuserid) {
+function AddToCart(cartedproductid, cartuserid, quantity) {
 
     //used in ProductView COMPONENT and pRODUCTDETAIL SCREEN
     Axios.post(`${ApiAddress.httpaddress}/api/post/addtocart`, {
         cartedproductid: cartedproductid,
-        cartuserid: cartuserid
+        cartuserid: cartuserid,
+        quantity: quantity
     }).then((response) => {
         alert("successfully item  added to cart")
         //getting auto generated cartid origin from database id val)

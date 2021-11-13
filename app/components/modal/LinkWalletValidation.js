@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Axios from 'axios'
 import ApiAddress from '../requests/ApiAddress';
+import ButtonsTextName from '../collections/ButtonsTextName';
 
 
 //parameters of the function should match the positioning of parent function
@@ -25,10 +26,10 @@ export default function LinkWalletValidation(username, walletPassword, { setConf
         else {
             // handle success
             /// declaring the values of api responnse data of user to send it as props to other child routes .
-            console.log("Successfully LInked")
+            // console.log("Successfully LInked from linkWallet Validation")
             setModalVisible(false)
-            setConfirmFinishbtn("Done")
-            setConfirmedStatus("Wallet Linked ✅")
+            setConfirmFinishbtn(ButtonsTextName.DoneFinalstep)
+            setConfirmedStatus(ButtonsTextName.WalletLinkedStatus)
 
 
 

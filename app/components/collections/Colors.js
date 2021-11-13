@@ -7,7 +7,12 @@ const COLORS = ({
     yellow: '#eac9b2',
     lightblue: '#dce7f6',
     placeorder: "#DA81F5",
-    new1: "#dce7f6"
+    new1: "#dce7f6",
+    purpleblue: "#A9A9F5",
+    iphoneWhite: "#dce7f6",
+    lightbluebtn: "lightblue",
+    bgtheme1: "#6a73cc",
+    cartScreenBtn: "#ed4b80"
 });
 
 export default COLORS;

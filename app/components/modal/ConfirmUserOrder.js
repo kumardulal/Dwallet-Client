@@ -3,6 +3,7 @@ import { Text, StyleSheet, View, TextInput, BackHandler } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native';
 import LinkWalletValidation from './LinkWalletValidation';
+import ButtonsTextName from '../collections/ButtonsTextName';
 
 export default function ConfirmUserOrder({ setModalVisible, userdata, setConfirmedStatus, setConfirmFinishbtn }) {
     const username = userdata.username;
@@ -23,7 +24,9 @@ export default function ConfirmUserOrder({ setModalVisible, userdata, setConfirm
     const handlecancel = () => {
         console.log("cancel")
         // setConfiremOrderModel(styles.modalmainNotVisible)
+        setConfirmFinishbtn(ButtonsTextName.LinkWallet)
         setModalVisible(false)
+
 
     }
     return (

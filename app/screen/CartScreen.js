@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CartView from '../components/CartView';
 import { Text, TextInput, StyleSheet, SafeAreaView, ScrollView, View, TouchableOpacity } from 'react-native';
-import COLORS from '../components/Colors';
+import COLORS from '../components/collections/Colors';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -36,9 +36,12 @@ function CartScreen({ userdata }) {
         <SafeAreaView style={styles.maincont} >
 
             <TextInput style={styles.search}
-                placeholder='search' />
+                placeholder='search carted item' />
 
-            <Text style={styles.countitem} >Your Carted Items - {countcarteditem}</Text>
+            <View style={{ display: "flex", flexDirection: "row", alignSelf: "center", justifyContent: "center" }}>
+                <Text style={styles.Headline} >CARTED ITEMS - </Text>
+                <Text style={{ fontSize: 19, color: COLORS.purpleblue, fontWeight: "bold" }}>{countcarteditem}</Text>
+            </View>
 
             <ScrollView style={styles.cartscrollview}>
                 <CartView userdata={userdata} setCountCartedItem={setCountCartedItem} setOrderItems={setOrderItems} />
@@ -87,21 +90,24 @@ function CartScreen({ userdata }) {
 const styles = StyleSheet.create({
     maincont: {
         flex: 1,
-        backgroundColor: "#6a73cc",
+        backgroundColor: COLORS.bgtheme1,
 
 
     },
 
     search: {
 
-        height: 50,
+        height: 45,
         color: 'black',
         width: "100%",
         textAlign: 'center',
         fontSize: 20,
         backgroundColor: 'white',
         borderRadius: 10,
-        borderStartColor: "red"
+
+        alignSelf: "center",
+        marginTop: 2,
+        marginBottom: 2,
 
 
 
@@ -117,11 +123,11 @@ const styles = StyleSheet.create({
         marginBottom: "2%",
 
     },
-    countitem: {
+    Headline: {
         textAlign: 'center',
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: 'bold',
-        color: "white"
+        color: COLORS.lightbluebtn
 
     },
 
@@ -129,7 +135,7 @@ const styles = StyleSheet.create({
     bottombuttons: {
         height: 40,
         width: "35%",
-        backgroundColor: "#ed4b80",
+        backgroundColor: COLORS.cartScreenBtn,
         // borderRadius: 20,
         borderTopLeftRadius: 25,
         borderTopRightRadius: 25,

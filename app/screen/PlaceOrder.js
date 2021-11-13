@@ -3,30 +3,28 @@ import { StyleSheet, Text, View, Button, TouchableOpacity, Image, Alert } from '
 import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import ButtonsTextName from '../components/collections/ButtonsTextName';
+import COLORS from '../components/collections/Colors';
 import ConfirmUserOrder from '../components/modal/ConfirmUserOrder';
-import LinkWalletValidation from '../components/modal/LinkWalletValidation';
+// import LinkWalletValidation from '../components/modal/LinkWalletValidation';
 // import * as SMS from 'expo-sms';
 
 export default function PlaceOrder({ navigation, route }) {
     const userdata = route.params?.userdata
     const orderItems = route.params?.orderItems
     const [userConfirmModel, setUserConfirmModel] = useState(<Blank />)
-    const [confirmedStatus, setConfirmedStatus] = useState("Wallet Linked ❎")
+    const [confirmedStatus, setConfirmedStatus] = useState(ButtonsTextName.WalletNotLinkedStatus)
     const [modalVisible, setModalVisible] = useState(false)
     const [confirmFinishbtn, setConfirmFinishbtn] = useState("Link Wallet")
     //this walletPassword is updated from the child function .so don't remove 
-    const [walletPassword, setWalletPassword] = useState("")
+    // const [walletPassword, setWalletPassword] = useState("")
 
     // this is for rendering the componet after click in confirm in model and place order
     useEffect(() => {
 
         if (modalVisible == false) {
-
             console.log("model was open: ", modalVisible)
             setUserConfirmModel(<Blank />)
-
-            // setConfirmFinishbtn("Link Wallet")
-
 
         }
         else {
@@ -39,11 +37,8 @@ export default function PlaceOrder({ navigation, route }) {
                 setConfirmFinishbtn={setConfirmFinishbtn}
 
             />)
-            setConfirmFinishbtn("Finish")
-
+            setConfirmFinishbtn(ButtonsTextName.FinishWalletLinking)
         }
-
-
     }, [modalVisible])
 
 
@@ -59,13 +54,12 @@ export default function PlaceOrder({ navigation, route }) {
     const handleLinkWallet = () => {
 
         if (modalVisible == true) {
-            if (confirmFinishbtn === "Finish") {
-                // LinkWalletValidation()
+            if (confirmFinishbtn === ButtonsTextName.FinishWalletLinking) {
                 alert("This needs to evaluate and validate and say success")
             }
             else {
                 setModalVisible(false)
-                // LinkWalletValidation()
+
             }
             //this state change is detected by useEffect
             // setModalVisible(false)
@@ -75,7 +69,7 @@ export default function PlaceOrder({ navigation, route }) {
         else {
             //this state change is detected by useEffect
             // setModalVisible(true)
-            if (confirmFinishbtn === "Done") {
+            if ((confirmFinishbtn === ButtonsTextName.DoneFinalstep)) {
                 alert("Successfully Ordered -evelaution here")
             }
 
@@ -200,7 +194,7 @@ const styles = StyleSheet.create({
     maincont: {
         flex: 1,
         height: "100%",
-        backgroundColor: "#dce7f6",
+        backgroundColor: COLORS.iphoneWhite,
 
     },
 
@@ -212,7 +206,7 @@ const styles = StyleSheet.create({
         color: "#1a0000"
     },
     itemsContainer: {
-        backgroundColor: Colors.white,
+        backgroundColor: COLORS.white,
         height: "80%"
     },
     confirmbtn: {

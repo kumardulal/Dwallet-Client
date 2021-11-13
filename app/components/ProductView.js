@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import AddToCart from './requests/AddToCart';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import ApiAddress from './requests/ApiAddress';
+import COLORS from './collections/Colors';
 
 
 function ProductView({ userdata, setProductdata }) {
@@ -39,7 +40,8 @@ function ProductView({ userdata, setProductdata }) {
 
     const handleaddcart = (cartedproductid) => {
         //using function of another comonent for add to cart functionality
-        AddToCart(cartedproductid, cartuserid)
+        const quantity = 1;
+        AddToCart(cartedproductid, cartuserid, quantity)
 
 
 
@@ -75,6 +77,7 @@ function ProductView({ userdata, setProductdata }) {
                             <View style={styles.productdetail}>
 
                                 <TouchableOpacity
+                                    style={styles.imageWrapper}
                                     onPress={() => handleviewdetails(val.productid, val.productname, val.productdesc, val.productprice, val.productimage)}>
                                     <Image
                                         resizeMode="contain"
@@ -83,12 +86,15 @@ function ProductView({ userdata, setProductdata }) {
                                     />
 
                                 </TouchableOpacity>
-                                <View style={{
-                                    flexDirection: 'row',
 
 
-                                }}>
-                                    <View style={styles.titletext}>
+                                <View style={styles.titletext}>
+                                    <View style={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        flexDirection: "column",
+                                        width: "70%"
+                                    }}>
 
                                         <View
                                             style={styles.name}>
@@ -98,23 +104,16 @@ function ProductView({ userdata, setProductdata }) {
                                             style={styles.priceTag}>
                                             <Text>Price: {val.productprice} </Text>
                                         </View>
-                                        <View
-                                            style={styles.pdesc}>
-                                            <Text>Desc: {val.productdesc} </Text>
-                                        </View>
-
                                     </View>
-                                    {/* <Button
-                                        onPress={() => ViewdetailsHandler(val.productid, val.productname, val.productdesc, val.productprice, val.productimage)}
-                                        title="View dETAILS"
-                                        color="#A9A9F5"
-                                        accessibilityLabel="Learn more about this purple button"
-                                    /> */}
+
+
+
+
 
                                     <View style={{
                                         height: 45,
-                                        backgroundColor: "grey",
-                                        width: "15%",
+                                        backgroundColor: COLORS.lightblue,
+                                        width: "16%",
                                         alignItems: "center",
                                         justifyContent: "center",
                                         borderRadius: 10,
@@ -130,8 +129,13 @@ function ProductView({ userdata, setProductdata }) {
 
                                     </View>
                                 </View>
-
+                                <View
+                                    style={styles.pdesc}>
+                                    <Text>Desc: {val.productdesc} </Text>
+                                </View>
                             </View>
+
+
 
 
 
@@ -161,40 +165,51 @@ const styles = StyleSheet.create({
     },
 
     productdetail: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
         backgroundColor: "#eee",
         borderRadius: 10,
         overflow: "hidden"
     },
     titletext: {
         padding: 0,
-        width: "80%",
-        flexDirection: "column",
-        marginLeft: 10,
+        width: "95%",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-evenly",
+        margin: 10,
 
-
-
+    },
+    imageWrapper: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
     },
 
     imageview: {
 
         height: 280,
-        width: "100%",
+        width: "92%",
         bottom: 10,
         borderRadius: 15
     },
     priceTag: {
         backgroundColor: "#00B761",
         width: 120,
-        height: 25,
+        height: 26,
         justifyContent: 'space-around',
         borderBottomLeftRadius: 10,
         borderTopRightRadius: 20,
 
     },
     pdesc: {
-
-        height: 20,
+        width: "90%",
+        height: 23,
         overflow: "hidden",
+        // alignSelf: "start",
+        marginLeft: "8%"
+
 
 
     }

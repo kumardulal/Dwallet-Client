@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native';
 import { View, Text, StyleSheet, Image, CheckBox, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import COLORS from '../components/Colors';
+import COLORS from '../components/collections/Colors';
 
 
 function Checkout({ navigation }) {

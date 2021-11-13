@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, TextInput, SafeAreaView, ScrollView } from 'rea
 import ProductView from '../components/ProductView';
 import { useNavigation } from '@react-navigation/native';
 import Search from '../components/Search';
+import COLORS from '../components/collections/Colors';
 
 
 
@@ -67,7 +68,7 @@ function ShopScreen({ userdata }) {
                     onChangeText={(text) => searchhandler(text)}
                     placeholder='search' />
 
-                <Text style={styles.text1} >Shop With D-Wallet</Text>
+                <Text style={styles.text1} >SHOP WITH D-WALLET</Text>
 
 
 
@@ -87,20 +88,22 @@ function ShopScreen({ userdata }) {
 const styles = StyleSheet.create({
     maincont: {
         flex: 1,
-        backgroundColor: "#475FFF80",
+        backgroundColor: COLORS.bgtheme1,
 
 
     },
 
     search: {
 
-        height: 50,
+        height: 45,
         color: 'black',
         width: "100%",
         textAlign: 'center',
         fontSize: 20,
         backgroundColor: 'white',
-        borderRadius: 20,
+        borderRadius: 10,
+        marginTop: 2,
+        marginBottom: 2,
 
 
 
@@ -118,8 +121,9 @@ const styles = StyleSheet.create({
     text1: {
 
         textAlign: 'center',
-        fontSize: 20,
-        fontWeight: 'bold'
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: COLORS.lightbluebtn
 
 
 
