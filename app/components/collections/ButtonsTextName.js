@@ -2,7 +2,7 @@
 const ButtonsTextName = ({
     //this is set to be states of the button in placeholder page
     LinkWallet: "Link Wallet",
-    FinishWalletLinking: "Finish",
+    FinishWalletLinking: "👆🏻👆🏻👆🏻👆🏻",
     DoneFinalstep: "Done",
     WalletLinkedStatus: "Wallet Linked ✅",
     WalletNotLinkedStatus: "Wallet Linked ❎",

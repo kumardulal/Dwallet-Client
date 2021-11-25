@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Text, StyleSheet, View, TextInput, BackHandler } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import { useNavigation } from '@react-navigation/native';
+// import { useNavigation } from '@react-navigation/native';
 import LinkWalletValidation from './LinkWalletValidation';
 import ButtonsTextName from '../collections/ButtonsTextName';
 
 export default function ConfirmUserOrder({ setModalVisible, userdata, setConfirmedStatus, setConfirmFinishbtn }) {
     const username = userdata.username;
-    const navigation = useNavigation();
+    // const navigation = useNavigation();
     const [walletPassword, setWalletPassword] = useState("")
 
     useEffect(() => {
@@ -17,7 +17,13 @@ export default function ConfirmUserOrder({ setModalVisible, userdata, setConfirm
     const handleConfirmWalletPass = () => {
         // confirm if the link wallet validatin is success
         // console.log("after onclick", walletPassword, userid)
-        LinkWalletValidation(username, walletPassword, { setConfirmedStatus }, { setModalVisible }, { setConfirmFinishbtn })
+        if (walletPassword != "") {
+            LinkWalletValidation(username, walletPassword, { setConfirmedStatus }, { setModalVisible }, { setConfirmFinishbtn })
+        }
+        else {
+            alert("Please Enter Wallet Password to proceed")
+        }
+
 
     }
 
@@ -50,7 +56,7 @@ export default function ConfirmUserOrder({ setModalVisible, userdata, setConfirm
                     <TouchableOpacity
                         onPress={handleConfirmWalletPass}
                         style={styles.btns}>
-                        <Text>Confirm</Text>
+                        <Text>Connect</Text>
                     </TouchableOpacity>
 
                 </View>
@@ -62,7 +68,7 @@ export default function ConfirmUserOrder({ setModalVisible, userdata, setConfirm
             </View>
 
 
-        </View>
+        </View >
     )
 }
 const styles = StyleSheet.create({

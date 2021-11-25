@@ -4,11 +4,16 @@ import {
     StyleSheet,
     Text,
     TouchableOpacity,
-    SafeAreaView,
     Button,
+
 } from 'react-native';
+
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
+import COLORS from '../components/collections/Colors';
+import YourOrderBtn from '../components/modal/YourOrderBtn';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 
 function WalletScreen({ userdata }) {
@@ -19,6 +24,9 @@ function WalletScreen({ userdata }) {
     const username = userdata.username;
     const userphonenumber = userdata.phonenumber
 
+    const transferIcon = <MaterialCommunityIcons name="transfer" size={60} color={COLORS.iphoneWhite} />
+    const withdrawIcon = <FontAwesome5 name="cash-register" size={50} color={COLORS.iphoneWhite} />
+    const rechargeIcon = <MaterialCommunityIcons name="cash-plus" size={80} color={COLORS.iphoneWhite} />
 
 
     const handleShopNow = () => {
@@ -34,10 +42,10 @@ function WalletScreen({ userdata }) {
 
     return (
 
-        <SafeAreaView style={styles.allbody}>
+        <View style={styles.allbody}>
             <View style={styles.walletheader}>
 
-
+                <View></View>
                 <Text style={styles.profileText}>Account ID : {userid} </Text>
                 <Text style={styles.profileText}>Account Holder Name : {username} </Text>
                 <Text style={styles.profileText}>Phonenumber : {userphonenumber} </Text>
@@ -49,91 +57,100 @@ function WalletScreen({ userdata }) {
 
             </View>
 
-
-
             <Button
-                style={styles.btnshop}
+
                 title="View transactions"
-                color="red"
+                color={COLORS.green}
                 accessibilityLabel="Learn more about this purple button"
             />
 
 
             <View style={styles.tskcontainer}>
-                <TouchableOpacity
-                    style={styles.task1shop}
-                    onPress={handleShopNow}>
-                    <Image
-                        style={styles.button_img}
-                        source={require("../assets/shop.png")}
-                    >
-                    </Image>
-                    {/* <Text style={styles.shoptxt}>Shop </Text> */}
+                <View style={styles.tasksbg}>
+                    <TouchableOpacity
+                        onPress={handleShopNow}>
+                        <Image
+                            style={styles.button_imgShop}
+                            source={require("../assets/shop.png")}
+                        >
+                        </Image>
+                    </TouchableOpacity>
 
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.tsktransfer}>
-                    <Image
-                        style={styles.button_img}
-                        source={require("../assets/transfer2.png")}
-                    >
-                    </Image>
+                    {/* Button componet is made for the Your Orders btn */}
+                    <YourOrderBtn navigation={navigation} />
 
-                    {/* <Text style={styles.shoptxt}>Transfer </Text> */}
+                </View>
+                {/* //////////////////////////////////////////////////Transfer and withdraw container */}
+                <View style={styles.tasksbg2}>
 
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.tskwithdraw}>
-                    <Image
-                        style={styles.button_img}
-                        source={require("../assets/withdraw1.png")}
-                    >
-                    </Image>
+                    <TouchableOpacity>
+                        <View style={styles.cenering}>
+                            {transferIcon}
+                            <Text style={styles.fonttran_width}>TRANSER BALANCE</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <View style={styles.cenering}>
+                            {withdrawIcon}
+                            <Text style={styles.fonttran_width}>Withdraw</Text>
+                        </View>
 
-                    {/* <Text style={styles.shoptxt}>WithDraw </Text> */}
+                    </TouchableOpacity>
 
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.tskrecharge}>
-                    <Image
-                        style={styles.button_img}
-                        source={require("../assets/recharge.png")}
-                    >
-                    </Image>
-                    {/* <Text style={styles.shoptxt}>Recharge </Text> */}
-                </TouchableOpacity>
+                </View>
+                {/* Recharge Wallet - container starts */}
+                <View style={styles.tasksbg2}>
+                    <TouchableOpacity style={styles.cenering}>
+                        {rechargeIcon}
+                        <Text style={styles.fonttran_width}>RECHARGE WALLET</Text>
+                    </TouchableOpacity>
+
+
+                </View>
+                <View style={{}}>
+                    <TouchableOpacity style={styles.messageReport}>
+                        <Text style={styles.btnsMsgRep}>REPORT</Text>
+                        <Text style={styles.btnsMsgRep}>Message</Text>
+                    </TouchableOpacity>
+
+
+                </View>
+
             </View>
             <StatusBar style="dark" />
-        </SafeAreaView>
+        </View>
     );
 }
 const styles = StyleSheet.create({
     allbody: {
         flex: 1,
-        backgroundColor: 'green',
-        height: "15%",
+        backgroundColor: COLORS.lightbluebtn,
+        height: "100%",
         width: "100%",
-        top: "5%",
-
 
     },
     walletheader: {
-        backgroundColor: '#475FFF80',
+        paddingTop: 40,
+        backgroundColor: "#008080",
         width: '100%',
-        height: '17%',
+        height: '24%',
         alignItems: 'center',
         borderRadius: 10,
-        justifyContent: "flex-start",
-        alignItems: 'flex-end'
+        justifyContent: "space-between",
+        alignItems: 'flex-end',
+        maxWidth: 600
 
     },
     balance: {
-
         alignSelf: "auto",
-        top: "25%",
+        top: "20%",
         fontSize: 20,
         color: 'purple',
         backgroundColor: 'green',
-        borderRadius: 20,
-        width: "59%",
-        textAlign: "center"
+        marginRight: 5,
+        width: "62%",
+        textAlign: "center",
+
 
     },
     profileText: {
@@ -145,70 +162,92 @@ const styles = StyleSheet.create({
         left: '47%'
     },
     profile_img: {
-        right: "60%",
-        bottom: 75,
-        height: "100%",
-        width: '50%'
+        right: "66%",
+        bottom: 60,
+        height: 90,
+        width: 120,
+        borderRadius: 20,
+        borderTopRightRadius: 50,
+        maxWidth: 300,
     },
 
+    tasksbg: {
 
-
-    task1shop: {
-        top: '5%',
-        backgroundColor: '#BCA9F5',
+        backgroundColor: COLORS.primaryWall,
         borderRadius: 5,
         height: '15%',
         alignItems: 'center',
-
-        justifyContent: 'center'
-
-    },
-    shoptxt: {
-        fontSize: 20,
-        color: 'white',
-
+        flexDirection: "row",
+        justifyContent: 'space-around',
+        margin: 2
 
     },
-    tsktransfer: {
-        top: '10%',
-        backgroundColor: '#FA58F4',
+    tasksbg2: {
+        backgroundColor: COLORS.primaryWall,
         borderRadius: 5,
-        height: '15%',
+        height: '31%',
         alignItems: 'center',
+        flexDirection: "row",
+        justifyContent: 'space-around',
+        margin: 2,
 
-        justifyContent: 'center'
-    },
-    tskwithdraw: {
-        top: '15%',
-        backgroundColor: '#2ECCFA',
-        borderRadius: 5,
-        height: '15%',
-        alignItems: 'center',
 
-        justifyContent: 'center'
     },
-    tskrecharge: {
-        top: '20%',
-        backgroundColor: '#8258FA',
-        borderRadius: 5,
-        height: '15%',
-        alignItems: 'center',
 
-        justifyContent: 'center'
-    },
     tskcontainer: {
         flex: 1,
-        backgroundColor: "grey",
-        margin: 2,
-        justifyContent: 'flex-start',
+        margin: 3,
+        // justifyContent: 'space-around',
+
 
     },
+    button_imgShop: {
+
+        height: 40,
+        width: 156,
+        borderRadius: 10
+    },
     button_img: {
-        top: 5,
+
         height: 90,
-        width: "90%",
-        borderRadius: 20
+        width: 160,
+        borderRadius: 10
+    },
+
+    fonttran_width: {
+        fontWeight: "bold",
+        fontSize: 20,
+        color: COLORS.lightblue
+    },
+    cenering: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: COLORS.lightbluebtn,
+        padding: 10,
+        borderRadius: 10,
+        opacity: 0.5,
+
+    },
+    messageReport: {
+        display: "flex",
+        justifyContent: "space-around",
+        alignItems: "center",
+        flexDirection: "row",
+        opacity: 0.6
+    },
+    btnsMsgRep: {
+        backgroundColor: COLORS.bgtheme1,
+        fontSize: 20,
+        padding: 10,
+        borderRadius: 5,
+        color: COLORS.white,
+        width: "45%",
+        textAlign: "center",
+        fontWeight: "bold",
+        marginTop: "5%"
     }
+
 
 
 })

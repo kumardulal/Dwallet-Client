@@ -12,7 +12,8 @@ const COLORS = ({
     iphoneWhite: "#dce7f6",
     lightbluebtn: "lightblue",
     bgtheme1: "#6a73cc",
-    cartScreenBtn: "#ed4b80"
+    cartScreenBtn: "#ed4b80",
+    primaryWall: "#00adad"
 });
 
 export default COLORS;

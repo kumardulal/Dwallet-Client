@@ -1,22 +1,29 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import CartScreen from '../../screen/CartScreen';
 import ShopScreen from '../../screen/ShopScreen';
+import COLORS from '../collections/Colors';
 
 const Tab = createMaterialTopTabNavigator();
 export default function HomeTopTabsNav({ userdata }) {
 
     return (
+        // <SafeAreaView style={{ width: "100%", height: "100%", top: "-3.8%" }}>
         <Tab.Navigator
             style={styles.topbar}
 
             tabBarOptions={{
-                activeTintColor: 'green',
-                inactiveTintColor: 'gray',
+
+                activeTintColor: COLORS.green,
+                inactiveTintColor: COLORS.dark,
+
                 style: {
 
-                    backgroundColor: '#04356d',
+                    backgroundColor: COLORS.iphoneWhite,
+                    color: "black"
+
 
                 }
             }}
@@ -35,15 +42,17 @@ export default function HomeTopTabsNav({ userdata }) {
 
             />
         </Tab.Navigator>
-
+        // </SafeAreaView>
 
 
     );
 }
 const styles = StyleSheet.create({
     topbar: {
-        backgroundColor: '#04356d',
-        paddingTop: "6%"
+        backgroundColor: COLORS.lightbluebtn,
+        paddingTop: "9.5%",
+        height: "9%",
+        opacity: 0.9
     },
 
 })

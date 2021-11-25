@@ -6,6 +6,8 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 import ButtonsTextName from '../components/collections/ButtonsTextName';
 import COLORS from '../components/collections/Colors';
 import ConfirmUserOrder from '../components/modal/ConfirmUserOrder';
+import FetchOrderItems from '../components/requests/FetchOrderItems';
+
 // import LinkWalletValidation from '../components/modal/LinkWalletValidation';
 // import * as SMS from 'expo-sms';
 
@@ -15,7 +17,9 @@ export default function PlaceOrder({ navigation, route }) {
     const [userConfirmModel, setUserConfirmModel] = useState(<Blank />)
     const [confirmedStatus, setConfirmedStatus] = useState(ButtonsTextName.WalletNotLinkedStatus)
     const [modalVisible, setModalVisible] = useState(false)
-    const [confirmFinishbtn, setConfirmFinishbtn] = useState("Link Wallet")
+    const [confirmFinishbtn, setConfirmFinishbtn] = useState(ButtonsTextName.LinkWallet)
+    const [totalPrice, setTotalPrice] = useState(0)
+
     //this walletPassword is updated from the child function .so don't remove 
     // const [walletPassword, setWalletPassword] = useState("")
 
@@ -36,10 +40,28 @@ export default function PlaceOrder({ navigation, route }) {
                 setConfirmedStatus={setConfirmedStatus}
                 setConfirmFinishbtn={setConfirmFinishbtn}
 
+
             />)
             setConfirmFinishbtn(ButtonsTextName.FinishWalletLinking)
         }
     }, [modalVisible])
+
+
+    useEffect(() => {
+        //this useeffect renders the total price of the product in Confirm Order that is Place Order Page
+        // var singlePrice = 0,
+        var totPrice = 0;
+        orderItems.map((val) => {
+            //price should be multiple to its no. of quantity
+            totPrice = parseInt(totPrice) + parseInt(val.productprice * val.quantity)
+            setTotalPrice(totPrice)
+
+
+        })
+    }, [1])
+
+
+
 
 
     //empty component to render 
@@ -55,9 +77,14 @@ export default function PlaceOrder({ navigation, route }) {
 
         if (modalVisible == true) {
             if (confirmFinishbtn === ButtonsTextName.FinishWalletLinking) {
-                alert("This needs to evaluate and validate and say success")
+                // alert("Deducted Rs." + totalPrice)
+                alert("Please connect your wallet first")
+
+
+
             }
             else {
+                //this state is called in useeffect up
                 setModalVisible(false)
 
             }
@@ -70,7 +97,9 @@ export default function PlaceOrder({ navigation, route }) {
             //this state change is detected by useEffect
             // setModalVisible(true)
             if ((confirmFinishbtn === ButtonsTextName.DoneFinalstep)) {
-                alert("Successfully Ordered -evelaution here")
+                /////////////////////////////////////////////I am working here........................
+                FetchOrderItems(orderItems, userdata)
+                navigation.navigate("FinishOrder")
             }
 
             else {
@@ -126,7 +155,7 @@ export default function PlaceOrder({ navigation, route }) {
                                 />
                                 <Text style={styles.allItemText}> {val.productname}</Text>
                                 <Text style={styles.allItemText}> {val.quantity}</Text>
-                                <Text style={styles.allItemText}> {val.productprice}</Text>
+                                <Text style={styles.allItemText}> {val.productprice * val.quantity}</Text>
                             </View>
 
                         </View>
@@ -136,7 +165,8 @@ export default function PlaceOrder({ navigation, route }) {
                 <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-around" }}>
                     <Text>TOTAL</Text>
                     <Text>=</Text>
-                    <Text>Rs 9500</Text>
+
+                    <Text>Rs {totalPrice}</Text>
                 </View>
 
                 <View style={{

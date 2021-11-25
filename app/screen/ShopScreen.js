@@ -12,11 +12,12 @@ function ShopScreen({ userdata }) {
     const [productdata, setProductdata] = useState([])
     const [searchitemlist, setSearchItemList] = useState([])
 
-    const searchhandler = (search) => {
 
+
+    const searchhandler = (search) => {
         let matches = productdata.filter(val => {
             const regex = new RegExp(`^${search}`, `gi`);
-            return (val.productname.match(regex) || val.productdesc.match(regex));
+            return (val.productname.match(regex)) || (val.productdesc.match(regex));
 
         });
         if (search.length === 0) {
@@ -43,7 +44,7 @@ function ShopScreen({ userdata }) {
                     onChangeText={(text) => searchhandler(text)}
                     placeholder='search' />
 
-                <Text style={styles.text1} >Shop With D-Wallet</Text>
+                <Text style={styles.text1} >Search results..</Text>
 
 
                 <ScrollView style={styles.productcont} >
@@ -63,18 +64,19 @@ function ShopScreen({ userdata }) {
         return (
 
             <SafeAreaView style={styles.maincont} >
+                {/* remove the comment if needed */}
+                {/* <Text style={styles.text1} >SHOP WITH D-WALLET</Text> */}
 
                 <TextInput style={styles.search}
                     onChangeText={(text) => searchhandler(text)}
                     placeholder='search' />
 
-                <Text style={styles.text1} >SHOP WITH D-WALLET</Text>
 
 
-
-                <ScrollView style={styles.productcont}>
+                <View style={styles.productcont}>
+                    {/* {compState} */}
                     <ProductView userdata={userdata} setProductdata={setProductdata} />
-                </ScrollView>
+                </View>
 
             </SafeAreaView >
 
@@ -82,27 +84,28 @@ function ShopScreen({ userdata }) {
     }
 
 
-
-
 }
 const styles = StyleSheet.create({
     maincont: {
         flex: 1,
-        backgroundColor: COLORS.bgtheme1,
+        backgroundColor: COLORS.lightbluebtn,
+        justifyContent: "center",
+        alignItems: "center"
 
 
     },
 
     search: {
 
-        height: 45,
+        height: 37,
         color: 'black',
-        width: "100%",
+        width: "95%",
+        maxWidth: 600,
         textAlign: 'center',
         fontSize: 20,
         backgroundColor: 'white',
         borderRadius: 10,
-        marginTop: 2,
+        marginTop: 5,
         marginBottom: 2,
 
 
@@ -119,19 +122,21 @@ const styles = StyleSheet.create({
 
     },
     text1: {
-
         textAlign: 'center',
-        fontSize: 18,
+        fontSize: 15,
         fontWeight: 'bold',
-        color: COLORS.lightbluebtn
+        color: COLORS.red,
+        opacity: 0.5,
+        backgroundColor: COLORS.white,
+        padding: 5,
+        width: "80%",
+        borderRadius: 10,
+        marginTop: 5
 
 
 
     },
-    tab1: {
-        backgroundColor: "red",
 
-    }
 
 })
 

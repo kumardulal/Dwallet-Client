@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CartView from '../components/CartView';
-import { Text, TextInput, StyleSheet, SafeAreaView, ScrollView, View, TouchableOpacity } from 'react-native';
+import { Text, TextInput, StyleSheet, SafeAreaView, ScrollView, View, TouchableOpacity, ColorPropType } from 'react-native';
 import COLORS from '../components/collections/Colors';
 import { useNavigation } from '@react-navigation/native';
 
@@ -34,13 +34,15 @@ function CartScreen({ userdata }) {
     }
     return (
         <SafeAreaView style={styles.maincont} >
+            <View style={{ display: "flex", flexDirection: "row", justifyContent: "space-around", marginTop: '1.9%' }}>
 
-            <TextInput style={styles.search}
-                placeholder='search carted item' />
+                <TextInput style={styles.search}
+                    placeholder='search carted item' />
 
-            <View style={{ display: "flex", flexDirection: "row", alignSelf: "center", justifyContent: "center" }}>
-                <Text style={styles.Headline} >CARTED ITEMS - </Text>
-                <Text style={{ fontSize: 19, color: COLORS.purpleblue, fontWeight: "bold" }}>{countcarteditem}</Text>
+                <View style={{ display: "flex", flexDirection: "row", alignSelf: "center", justifyContent: "center" }}>
+                    <Text style={styles.Headline} >CARTED ITEMS - </Text>
+                    <Text style={styles.itemcount}>{countcarteditem}</Text>
+                </View>
             </View>
 
             <ScrollView style={styles.cartscrollview}>
@@ -90,24 +92,26 @@ function CartScreen({ userdata }) {
 const styles = StyleSheet.create({
     maincont: {
         flex: 1,
-        backgroundColor: COLORS.bgtheme1,
+        backgroundColor: COLORS.lightbluebtn,
+        // justifyContent: "center",
+        // alignItems: "center"
 
 
     },
 
     search: {
 
-        height: 45,
+        height: 35,
         color: 'black',
-        width: "100%",
+        width: "45%",
         textAlign: 'center',
-        fontSize: 20,
-        backgroundColor: 'white',
-        borderRadius: 10,
+        fontSize: 15,
+        backgroundColor: COLORS.white,
+        borderRadius: 5,
 
         alignSelf: "center",
-        marginTop: 2,
-        marginBottom: 2,
+
+
 
 
 
@@ -118,20 +122,34 @@ const styles = StyleSheet.create({
         marginHorizontal: 7,
         backgroundColor: 'white',
         overflow: "scroll",
-        borderWidth: 2,
-        borderColor: "green",
-        marginBottom: "2%",
+        borderWidth: 1.5,
+        borderColor: COLORS.yellow,
+        marginBottom: "3%",
 
     },
     Headline: {
         textAlign: 'center',
-        fontSize: 18,
+        fontSize: 14,
         fontWeight: 'bold',
-        color: COLORS.lightbluebtn
+        color: COLORS.dark,
+        backgroundColor: COLORS.light,
+        padding: 7,
+        borderRadius: 20,
+
 
     },
+    itemcount: {
+        fontSize: 19,
+        color: COLORS.red,
+        fontWeight: "bold",
+        backgroundColor: COLORS.lightblue,
+        padding: 5,
+        marginRight: 5,
+        borderTopRightRadius: 10,
+        borderBottomLeftRadius: 20
+    }
 
-
+    ,
     bottombuttons: {
         height: 40,
         width: "35%",

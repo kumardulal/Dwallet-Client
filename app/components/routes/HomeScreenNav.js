@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeTopTabsNav from '../routes/HomeTopTabsNav';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import WalletScreen from '../../screen/WalletScreen';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 
@@ -36,7 +37,9 @@ function NavShop({ userdata }) {
 
     return (
         <>
+
             <HomeTopTabsNav userdata={userdata} />
+
         </>
 
     )

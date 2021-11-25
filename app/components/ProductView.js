@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Text, View, Image, TouchableOpacity, StyleSheet, Button } from 'react-native';
+import { Text, View, Image, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AddToCart from './requests/AddToCart';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -34,7 +34,7 @@ function ProductView({ userdata, setProductdata }) {
 
     //making the product go random view on refresh // 
     //this place we can put alorithm for how we want to show our product list and suggesion on page
-    const productInfo1 = productInfo.sort(() => Math.random() - Math.random());
+    // const productInfo1 = productInfo.sort(() => Math.random() - Math.random());
 
 
 
@@ -62,87 +62,86 @@ function ProductView({ userdata, setProductdata }) {
     return (
 
         <>
-            {
-                productInfo1?.map((val, index) => {
-                    return (
+            <FlatList
+                showsVerticalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}
+                keyExtractor={(item) => item.productid.toString()}
+                data={productInfo}
+                renderItem={({ item }) => (
+                    <View style={styles.maincontainer} key={item.productid.toString()}>
+                        <View style={styles.productdetail} >
 
-                        <View style={styles.maincontainer} key={index} >
+                            <TouchableOpacity
+                                style={styles.imageWrapper}
+                                onPress={() => handleviewdetails(item.productid, item.productname, item.productdesc, item.productprice, item.productimage)}>
+                                <Image
+                                    resizeMode="contain"
+                                    // source={{ uri: ("https://i.ibb.co/ZxmM8GP/zoom.jpg") }}
+                                    source={{ uri: (item.productimage) }}
+                                    style={styles.imageview}
+                                />
 
-
-
-                            {/* Remove this one conponent after done with image storing in sql database */}
-                            {/* <TouchableOpacity style={styles.ProductView}
-                                //this functin handle view details is import from handler
-                                onPress={() => handleviewdetails(val.productid, val.productname, val.productdesc, val.productprice, val.productimage)}> */}
-                            <View style={styles.productdetail}>
-
-                                <TouchableOpacity
-                                    style={styles.imageWrapper}
-                                    onPress={() => handleviewdetails(val.productid, val.productname, val.productdesc, val.productprice, val.productimage)}>
-                                    <Image
-                                        resizeMode="contain"
-                                        source={{ uri: (val.productimage) }}
-                                        style={styles.imageview}
-                                    />
-
-                                </TouchableOpacity>
+                            </TouchableOpacity>
 
 
-                                <View style={styles.titletext}>
-                                    <View style={{
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        flexDirection: "column",
-                                        width: "70%"
-                                    }}>
+                            <View style={styles.titletext}>
+                                <View style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    flexDirection: "column",
+                                    width: "70%"
+                                }}>
 
-                                        <View
-                                            style={styles.name}>
-                                            <Text>name: {val.productname} </Text>
-                                        </View>
-                                        <View
-                                            style={styles.priceTag}>
-                                            <Text>Price: {val.productprice} </Text>
-                                        </View>
+                                    <View
+                                        style={styles.name}>
+                                        <Text>name: {item.productname} </Text>
                                     </View>
-
-
-
-
-
-                                    <View style={{
-                                        height: 45,
-                                        backgroundColor: COLORS.lightblue,
-                                        width: "16%",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        borderRadius: 10,
-
-
-                                    }} ><TouchableOpacity
-                                        onPress={() => handleaddcart(val.productid)}>
-                                            <Icon name="add-shopping-cart" size={32} onPress={() => handleaddcart(val.productid)} />
-                                            {/* <Image
-                                                    source={require("../assets/addtocart1.png")} /> */}
-                                        </TouchableOpacity>
-
-
+                                    <View
+                                        style={styles.priceTag}>
+                                        <Text>Price: {item.productprice} </Text>
                                     </View>
                                 </View>
-                                <View
-                                    style={styles.pdesc}>
-                                    <Text>Desc: {val.productdesc} </Text>
+
+
+
+
+
+                                <View style={{
+                                    height: 45,
+                                    backgroundColor: COLORS.lightblue,
+                                    width: "16%",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    borderRadius: 10,
+
+
+                                }} ><TouchableOpacity
+                                    onPress={() => handleaddcart(item.productid)}>
+                                        <Icon name="add-shopping-cart" size={32} onPress={() => handleaddcart(item.productid)} />
+                                        {/* <Image
+                                        source={require("../assets/addtocart1.png")} /> */}
+                                    </TouchableOpacity>
+
+
                                 </View>
                             </View>
-
-
-
-
-
+                            <View
+                                style={styles.pdesc}>
+                                <Text>Desc: {item.productdesc} </Text>
+                            </View>
                         </View>
-                    )
-                })
-            }
+                    </View>
+
+
+
+                    ////////
+
+
+
+                    /////
+                )}
+            />
+
 
         </>
 
@@ -158,7 +157,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: 'space-around',
-        margin: 5,
+        // margin: 5,
         flexWrap: "wrap",
 
 
@@ -188,7 +187,7 @@ const styles = StyleSheet.create({
     },
 
     imageview: {
-
+        marginTop: 20,
         height: 280,
         width: "92%",
         bottom: 10,
@@ -201,7 +200,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         borderBottomLeftRadius: 10,
         borderTopRightRadius: 20,
-
     },
     pdesc: {
         width: "90%",
@@ -210,13 +208,10 @@ const styles = StyleSheet.create({
         // alignSelf: "start",
         marginLeft: "8%"
 
-
-
     }
 })
 
 export default ProductView;
-
 
 
 

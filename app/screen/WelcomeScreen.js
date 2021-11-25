@@ -1,20 +1,21 @@
 import React, { useState, useEffect, Component } from 'react';
-import { ImageBackground, TextInput, View, Image, StyleSheet, Text, TouchableOpacity, } from 'react-native';
+import { ImageBackground, TextInput, View, Image, StyleSheet, Text, TouchableOpacity, ColorPropType, } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import Axios from 'axios';
 import ApiAddress from '../components/requests/ApiAddress';
+import COLORS from '../components/collections/Colors';
+
 
 
 
 function WelcomeScreen({ navigation }) {
-    let pagetitle = "Welcome People!";
-    let pagedesc = "Buy and sell anything with D-Wallet";
+    let pagetitle = "🧙🏻‍♀️Welcome Guys !!";
+    let pagedesc = " We sell Tech Products and Gadgets ";
     const [username, setusername] = useState();
     const [password, setpassword] = useState();
 
 
     const onclickLogin = () => {
-
 
         Axios.post(`${ApiAddress.httpaddress}/api/welcomescreen/logintask`, {
             username: username,
@@ -47,58 +48,70 @@ function WelcomeScreen({ navigation }) {
     return (
         <ImageBackground
             style={styles.background}
-            source={require("../assets/bg2.jpg")}
+            source={require("../assets/bgwallet.png")}
 
         >
 
-            <View style={styles.logocontainer} >
+            <View style={styles.logocontainerPlusTitle} >
                 <Image
                     style={styles.logo}
                     source={require("../assets/logo.png")}
                 />
-                <Text style={styles.titletext} >{pagetitle}</Text>
-                <Text style={styles.desctext} >{pagedesc}</Text>
+
+                <View>
+                    <Text style={styles.titletext} >{pagetitle}</Text>
+                    <Text style={styles.desctext} >{pagedesc}</Text>
+                    <Text style={styles.desctext} >D-Wallet Makes your purchase easy</Text>
+                    <Text style={styles.desctext} >Easy transfer,recharge and withdraw wallet balance</Text>
+                    <Text style={styles.desctext} >Free delivery within Kathmandu</Text>
+                    <Text style={styles.desctext} >Support Contact: 09564692647</Text>
+                </View>
+
+
 
             </View>
-            <TextInput
-                onChangeText={setusername}
 
-                placeholder="username"
+            <View style={{ width: "100%" }}>
+                <TextInput
+                    onChangeText={setusername}
 
-                style={styles.inputusername} />
-            <TextInput
-                onChangeText={setpassword}
+                    placeholder="username"
 
-                placeholder="Password"
-                secureTextEntry
+                    style={styles.inputusername} />
+                <TextInput
+                    onChangeText={setpassword}
+
+                    placeholder="Password"
+                    secureTextEntry
 
 
-                style={styles.inputpassword} />
+                    style={styles.inputpassword} />
 
-            <View style={{ flexDirection: "column", width: "95%", margin: 5 }}>
-                <TouchableOpacity
+                <View style={{ flexDirection: "column", width: "95%", margin: 5, }}>
+                    <TouchableOpacity
 
-                    onPress={onclickLogin}
-                    style={styles.loginbtn}
-                >
-                    <View  >
-                        <Text style={styles.logintext}>
-                            Login
-                        </Text>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.signup}
-                    onPress={() => navigation.navigate("RegistrationScreen")}>
-                    <View
+                        onPress={onclickLogin}
+                        style={styles.loginbtn}
                     >
-                        <Text
-                            style={styles.signuptext}
+                        <View  >
+                            <Text style={styles.logintext}>
+                                LOGIN
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.signup}
+                        onPress={() => navigation.navigate("RegistrationScreen")}>
+                        <View
                         >
-                            SignUp
-                        </Text>
-                    </View>
-                </TouchableOpacity>
+                            <Text
+                                style={styles.signuptext}
+                            >
+                                REGISTER
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
             </View>
             <StatusBar style="auto" />
         </ImageBackground>
@@ -115,76 +128,103 @@ function WelcomeScreen({ navigation }) {
 const styles = StyleSheet.create({
     background: {
         flex: 1,
-        justifyContent: 'flex-end',
-        alignItems: 'center'
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        maxWidth: 650
+        // fontFamily: "impact"
     },
 
     loginbtn: {
         width: '100%',
-        height: 70,
-        backgroundColor: '#00bfff',
+        height: 55,
+        backgroundColor: "lightblue",
         borderRadius: 10,
         bottom: 5,
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        opacity: 0.4
+
 
     },
     logintext: {
         fontSize: 30,
         textAlign: 'center',
         fontWeight: 'bold',
-        color: '#ffd11a'
+        color: COLORS.white
     },
     signup: {
         width: '100%',
-        height: 70,
-        backgroundColor: '#1a1aff',
+        height: 55,
+        backgroundColor: "lightblue",
         borderRadius: 10,
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        opacity: 0.4
     },
     signuptext: {
         fontSize: 30,
         textAlign: 'center',
         fontWeight: 'bold',
-        color: '#ffd11a'
+        color: COLORS.light
 
     },
     logo: {
 
-        // bottom: "55%",
+
         width: '100%',
-        height: 100,
-        position: "absolute",
+        height: 90,
+
+        backgroundColor: COLORS.dark,
+        opacity: 0.7,
+        borderRadius: 5,
 
     },
-    logocontainer: {
-        position: "absolute",
-        width: "100%",
-        top: 1,
+    logocontainerPlusTitle: {
+        display: "flex",
+        justifyContent: "space-around",
+        height: "55%",
+        width: "99%",
+        top: 40,
+        maxWidth: 600
+
+
+
+
+
 
     },
 
     titletext: {
-        top: "110%",
-        fontSize: 35,
-        textAlign: 'center',
-        color: "#1a0000",
+        // top: "110%",
+        fontSize: 40,
+        textAlign: "center",
+        color: COLORS.white,
         fontWeight: 'bold',
+        marginTop: 20,
+        marginBottom: 10
+
 
     },
     desctext: {
-        top: "110%",
-        fontSize: 35,
-        textAlign: 'center',
-        color: "#ffcc00",
+        // top: 260,
+        fontSize: 17,
+        width: "85%",
+        maxWidth: 600,
+        textAlign: "left",
+        color: COLORS.yellow,
         fontWeight: 'bold',
+        margin: 1,
+        backgroundColor: COLORS.green,
+        opacity: 0.5,
+        padding: 8,
+        borderTopRightRadius: 10,
+
 
     },
     inputusername: {
         width: "95%",
         height: 60,
-        margin: 12,
+        margin: 5,
         borderWidth: 2,
         backgroundColor: "white",
         textAlign: 'center',
@@ -195,7 +235,7 @@ const styles = StyleSheet.create({
     inputpassword: {
         width: "95%",
         height: 60,
-        margin: 12,
+        margin: 5,
         borderWidth: 2,
         backgroundColor: "white",
         textAlign: 'center',

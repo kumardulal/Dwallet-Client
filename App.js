@@ -9,6 +9,9 @@ import HomeScreenNav from './app/components/routes/HomeScreenNav';
 import ProductDetailScreen from './app/screen/ProductDetailScreen';
 import Checkout from './app/screen/Checkout';
 import PlaceOrder from './app/screen/PlaceOrder';
+import FinishOrder from './app/screen/FinishOrder';
+import OrderedItems from './app/screen/OrderedItems';
+
 
 
 // import ProductView from './app/components/ProductView';
@@ -26,13 +29,14 @@ function App() {
         headerShown: false
       }}>
 
-
         <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
         <Stack.Screen name="RegistrationScreen" component={RegistrationScreen} />
         <Stack.Screen name="HomeScreenNav" component={HomeScreenNav} />
         <Stack.Screen name="ProductDetailScreen" component={ProductDetailScreen} />
         <Stack.Screen name="CheckOutScreen" component={Checkout} />
         <Stack.Screen name="PlaceOrder" component={PlaceOrder} />
+        <Stack.Screen name="FinishOrder" component={FinishOrder} />
+        <Stack.Screen name="OrderedItems" component={OrderedItems} />
 
 
         {/* useless for now  */}

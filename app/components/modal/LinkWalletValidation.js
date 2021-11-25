@@ -8,6 +8,7 @@ import ButtonsTextName from '../collections/ButtonsTextName';
 export default function LinkWalletValidation(username, walletPassword, { setConfirmedStatus }, { setModalVisible }, { setConfirmFinishbtn }) {
 
 
+
     //setConfirmedStatus wil update the text in placeorder page
 
     //same login api is used to validate the wallet password
