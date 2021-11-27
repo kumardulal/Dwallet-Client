@@ -6,8 +6,6 @@ import ApiAddress from '../components/requests/ApiAddress';
 import COLORS from '../components/collections/Colors';
 
 
-
-
 function WelcomeScreen({ navigation }) {
     let pagetitle = "🧙🏻‍♀️Welcome Guys !!";
     let pagedesc = " We sell Tech Products and Gadgets ";
@@ -55,10 +53,10 @@ function WelcomeScreen({ navigation }) {
             <View style={styles.logocontainerPlusTitle} >
                 <Image
                     style={styles.logo}
-                    source={require("../assets/logo.png")}
+                    source={require("../assets/logo.jpg")}
                 />
 
-                <View>
+                <View style={{ width: "100%" }}>
                     <Text style={styles.titletext} >{pagetitle}</Text>
                     <Text style={styles.desctext} >{pagedesc}</Text>
                     <Text style={styles.desctext} >D-Wallet Makes your purchase easy</Text>
@@ -87,7 +85,7 @@ function WelcomeScreen({ navigation }) {
 
                     style={styles.inputpassword} />
 
-                <View style={{ flexDirection: "column", width: "95%", margin: 5, }}>
+                <View style={{ flexDirection: "column", width: "95%", margin: 5 }}>
                     <TouchableOpacity
 
                         onPress={onclickLogin}
@@ -130,8 +128,10 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'space-between',
         alignItems: 'center',
-        maxWidth: 650
-        // fontFamily: "impact"
+        width: "100%",
+
+
+
     },
 
     loginbtn: {
@@ -169,23 +169,25 @@ const styles = StyleSheet.create({
 
     },
     logo: {
-
-
-        width: '100%',
-        height: 90,
+        left: "20%",
+        // width: '100%',
+        // height: 90,
 
         backgroundColor: COLORS.dark,
-        opacity: 0.7,
+        opacity: 0.9,
         borderRadius: 5,
 
     },
     logocontainerPlusTitle: {
         display: "flex",
         justifyContent: "space-around",
-        height: "55%",
+        height: "60%",
         width: "99%",
-        top: 40,
-        maxWidth: 600
+        marginTop: "10%",
+        backgroundColor: COLORS.bgtheme1,
+        borderBottomLeftRadius: 200,
+        opacity: 0.7
+
 
 
 
@@ -196,11 +198,10 @@ const styles = StyleSheet.create({
 
     titletext: {
         // top: "110%",
-        fontSize: 40,
+        fontSize: 35,
         textAlign: "center",
-        color: COLORS.white,
+        color: COLORS.lightbluebtn,
         fontWeight: 'bold',
-        marginTop: 20,
         marginBottom: 10
 
 
@@ -211,11 +212,11 @@ const styles = StyleSheet.create({
         width: "85%",
         maxWidth: 600,
         textAlign: "left",
-        color: COLORS.yellow,
+        color: COLORS.white,
         fontWeight: 'bold',
         margin: 1,
-        backgroundColor: COLORS.green,
-        opacity: 0.5,
+        backgroundColor: COLORS.purpleblue,
+        opacity: 0.8,
         padding: 8,
         borderTopRightRadius: 10,
 

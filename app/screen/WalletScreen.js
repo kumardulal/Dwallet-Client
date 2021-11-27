@@ -4,7 +4,7 @@ import {
     StyleSheet,
     Text,
     TouchableOpacity,
-    Button,
+
 
 } from 'react-native';
 
@@ -24,9 +24,9 @@ function WalletScreen({ userdata }) {
     const username = userdata.username;
     const userphonenumber = userdata.phonenumber
 
-    const transferIcon = <MaterialCommunityIcons name="transfer" size={60} color={COLORS.iphoneWhite} />
-    const withdrawIcon = <FontAwesome5 name="cash-register" size={50} color={COLORS.iphoneWhite} />
-    const rechargeIcon = <MaterialCommunityIcons name="cash-plus" size={80} color={COLORS.iphoneWhite} />
+    const transferIcon = <MaterialCommunityIcons name="transfer" size={60} color={COLORS.primaryWall} />
+    const withdrawIcon = <FontAwesome5 name="cash-register" size={50} color={COLORS.primaryWall} />
+    const rechargeIcon = <MaterialCommunityIcons name="cash-plus" size={80} color={COLORS.primaryWall} />
 
 
     const handleShopNow = () => {
@@ -44,25 +44,25 @@ function WalletScreen({ userdata }) {
 
         <View style={styles.allbody}>
             <View style={styles.walletheader}>
-
-                <View></View>
-                <Text style={styles.profileText}>Account ID : {userid} </Text>
-                <Text style={styles.profileText}>Account Holder Name : {username} </Text>
-                <Text style={styles.profileText}>Phonenumber : {userphonenumber} </Text>
-                <Text style={styles.balance}>Your Balance : {currentbalance} </Text>
-
                 <Image style={styles.profile_img}
                     source={require('../assets/me.jpg')}
                 />
+                <View style={{ display: "flex", flexDirection: "column" }}>
+
+                    <Text style={styles.profileText}>Account ID : {userid} </Text>
+                    <Text style={styles.profileText}>Account Holder Name : {username} </Text>
+                    <Text style={styles.profileText}>Phonenumber : {userphonenumber} </Text>
+                    <Text style={styles.balance}>Your Balance : {currentbalance} </Text>
+                </View>
+
+
 
             </View>
 
-            <Button
 
-                title="View transactions"
-                color={COLORS.green}
-                accessibilityLabel="Learn more about this purple button"
-            />
+            <TouchableOpacity style={{ backgroundColor: COLORS.yellow, height: 40, display: "flex", justifyContent: "center", alignItems: "center" }} >
+                <Text style={{ textAlign: "center", fontSize: 20 }}>View transaction</Text>
+            </TouchableOpacity>
 
 
             <View style={styles.tskcontainer}>
@@ -92,7 +92,7 @@ function WalletScreen({ userdata }) {
                     <TouchableOpacity>
                         <View style={styles.cenering}>
                             {withdrawIcon}
-                            <Text style={styles.fonttran_width}>Withdraw</Text>
+                            <Text style={styles.fonttran_width}>WITHDRAW </Text>
                         </View>
 
                     </TouchableOpacity>
@@ -108,10 +108,14 @@ function WalletScreen({ userdata }) {
 
                 </View>
                 <View style={{}}>
-                    <TouchableOpacity style={styles.messageReport}>
-                        <Text style={styles.btnsMsgRep}>REPORT</Text>
-                        <Text style={styles.btnsMsgRep}>Message</Text>
-                    </TouchableOpacity>
+                    <View style={styles.messageReport}>
+                        <TouchableOpacity>
+                            <Text style={styles.btnsMsgRep}>REPORT PROBLEM</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <Text style={styles.btnsMsgRep}>HELP !</Text>
+                        </TouchableOpacity>
+                    </View>
 
 
                 </View>
@@ -128,44 +132,38 @@ const styles = StyleSheet.create({
         height: "100%",
         width: "100%",
 
+
     },
     walletheader: {
-        paddingTop: 40,
-        backgroundColor: "#008080",
-        width: '100%',
-        height: '24%',
-        alignItems: 'center',
-        borderRadius: 10,
-        justifyContent: "space-between",
-        alignItems: 'flex-end',
-        maxWidth: 600
+        marginTop: 50,
+        display: "flex",
+        flexDirection: "row",
+        height: "16%",
+        justifyContent: "space-around"
 
     },
     balance: {
-        alignSelf: "auto",
-        top: "20%",
+
         fontSize: 20,
         color: 'purple',
-        backgroundColor: 'green',
+        backgroundColor: COLORS.new1,
         marginRight: 5,
-        width: "62%",
+        width: "100%",
         textAlign: "center",
 
 
     },
     profileText: {
 
-        top: "10%",
+
         fontSize: 12,
         color: 'black',
-        alignSelf: "flex-start",
-        left: '47%'
+
     },
     profile_img: {
-        right: "66%",
-        bottom: 60,
-        height: 90,
-        width: 120,
+
+        height: 110,
+        width: 140,
         borderRadius: 20,
         borderTopRightRadius: 50,
         maxWidth: 300,
@@ -173,7 +171,7 @@ const styles = StyleSheet.create({
 
     tasksbg: {
 
-        backgroundColor: COLORS.primaryWall,
+        backgroundColor: COLORS.bgtheme1,
         borderRadius: 5,
         height: '15%',
         alignItems: 'center',
@@ -197,6 +195,7 @@ const styles = StyleSheet.create({
     tskcontainer: {
         flex: 1,
         margin: 3,
+
         // justifyContent: 'space-around',
 
 
@@ -216,17 +215,17 @@ const styles = StyleSheet.create({
 
     fonttran_width: {
         fontWeight: "bold",
-        fontSize: 20,
-        color: COLORS.lightblue
+        fontSize: 18,
+        color: COLORS.primaryWall
     },
     cenering: {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: COLORS.lightbluebtn,
+        backgroundColor: COLORS.new1,
         padding: 10,
         borderRadius: 10,
-        opacity: 0.5,
+
 
     },
     messageReport: {
@@ -234,19 +233,20 @@ const styles = StyleSheet.create({
         justifyContent: "space-around",
         alignItems: "center",
         flexDirection: "row",
-        opacity: 0.6
+
     },
     btnsMsgRep: {
-        backgroundColor: COLORS.bgtheme1,
-        fontSize: 20,
+        backgroundColor: COLORS.iphoneWhite,
+        fontSize: 14,
         padding: 10,
         borderRadius: 5,
-        color: COLORS.white,
-        width: "45%",
+        color: COLORS.dark,
+        width: 150,
         textAlign: "center",
         fontWeight: "bold",
-        marginTop: "5%"
-    }
+        marginTop: "20%"
+    },
+
 
 
 

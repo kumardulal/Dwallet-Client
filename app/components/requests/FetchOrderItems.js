@@ -1,21 +1,24 @@
 import Axios from "axios"
 import ApiAddress from "./ApiAddress"
 
-export default function FetchOrderItems(orderitems, userdata) {
-    console.log(orderitems, "this is the order")
-    const username = userdata.username
-    const productid = orderitems[0].productid
-    const quantity = orderitems[0].quantity
-    const totalprice = orderitems[0].quantity * orderitems[0].productprice
-    // const quantity = orderitems.quantity
+export default function FetchOrderItems(orderItems, userdata, { navigation }) {
+    console.log(orderItems, "this is the order")
+    // const cartid = orderItems.cartid
+    const userid = userdata.userid
 
-    Axios.post(`${ApiAddress.httpaddress}/api/postorders`, {
-        username: username,
-        productid: productid,
-        quantity: quantity,
-        totalprice: totalprice
+
+    Axios.put(`${ApiAddress.httpaddress}/api/postorders`, {
+        // cartid: cartid,
+        userid: userid,
+
     }).then((res) => {
-        alert("success")
+        if (res) {
+            navigation.navigate("FinishOrder")
+        }
+        else {
+            alert("nonono")
+        }
+
     }).catch = (err) => {
         console.log(err)
     }

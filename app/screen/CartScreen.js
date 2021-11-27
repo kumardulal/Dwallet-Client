@@ -25,11 +25,18 @@ function CartScreen({ userdata }) {
     }
     const handlePlaceOrder = () => {
         console.log("Placing the Order")
-        navigation.navigate({
-            name: 'PlaceOrder',
-            params: { userdata: userdata, orderItems: orderItems },
-            merge: true,
-        })
+        if (orderItems.length > 0) {
+            navigation.navigate({
+                name: 'PlaceOrder',
+                params: { userdata: userdata, orderItems: orderItems },
+                merge: true,
+            })
+        }
+        else {
+            alert("❌ No items in Cart to Proceed")
+        }
+
+
 
     }
     return (
@@ -126,6 +133,7 @@ const styles = StyleSheet.create({
         borderColor: COLORS.yellow,
         marginBottom: "3%",
 
+
     },
     Headline: {
         textAlign: 'center',
@@ -153,7 +161,7 @@ const styles = StyleSheet.create({
     bottombuttons: {
         height: 40,
         width: "35%",
-        backgroundColor: COLORS.cartScreenBtn,
+        backgroundColor: COLORS.primaryWall,
         // borderRadius: 20,
         borderTopLeftRadius: 25,
         borderTopRightRadius: 25,

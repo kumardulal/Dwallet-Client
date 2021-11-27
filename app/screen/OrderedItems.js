@@ -7,11 +7,9 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import COLORS from '../components/collections/Colors';
 
 
-
-
 //this need to get the props of status id 1 2 or 3 to change the state of the component status
 export default function OrderedItems({ navigation }) {
-    const deliveryStatus = 2;
+    const deliveryStatus = 3;
     const customerCare = <AntDesign name="customerservice" size={31} color={COLORS.green} />
     const notProcessed = <AntDesign name="close" size={55} color={COLORS.red} />
     const confirmed = <FontAwesome5 name="stamp" size={55} color={COLORS.green} />;
@@ -21,6 +19,8 @@ export default function OrderedItems({ navigation }) {
     const [pointerText1, setpointerText1] = useState(notProcessed)
     const [pointerText2, setpointerText2] = useState(notProcessed)
     const [pointerText3, setpointerText3] = useState(notProcessed)
+
+
 
 
     useEffect(() => {
@@ -98,92 +98,108 @@ export default function OrderedItems({ navigation }) {
 
 
     return (
-        <View style={styles.maincont}>
-            <View style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-                width: "85%",
-                marginTop: 50
-            }}>
-                <Ionicons
-                    name="arrow-back-outline"
-                    size={40}
-                    style={{ marginLeft: 10 }}
-                    color="black"
-                    onPress={() => navigation.goBack()}
-                />
-                <Text style={{
-                    fontSize: 22,
-                    marginRight: 50
-                }}>ORDER ACTIVITY</Text>
-            </View>
-            <View style={{
-                display: "flex",
-                width: "100%",
-                height: 360,
-                alignItems: "center",
-                marginTop: "20%"
-            }}>
-
+        <View style={{ display: "flex", justifyContent: "center" }}>
+            <View style={styles.maincont}>
                 <View style={{
-                    height: 150,
-                    width: "98%",
-                    backgroundColor: COLORS.lightbluebtn,
                     display: "flex",
-                    justifyContent: "space-around"
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    width: "85%",
+                    marginTop: 50
                 }}>
+                    <Ionicons
+                        name="arrow-back-outline"
+                        size={40}
+                        style={{ marginLeft: 10 }}
+                        color="black"
+                        onPress={() => navigation.goBack()}
+                    />
+                    <Text style={{
+                        fontSize: 22,
+                        marginRight: 50
+                    }}>ORDER ACTIVITY</Text>
+                </View>
+                <View style={{
+                    display: "flex",
+                    width: "100%",
+                    height: 360,
+                    alignItems: "center",
+                    marginTop: "20%"
+                }}>
+
                     <View style={{
+                        height: 150,
+                        width: "98%",
+                        backgroundColor: COLORS.lightbluebtn,
                         display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "space-between"
+                        justifyContent: "space-around"
                     }}>
-                        <View style={styles.deliverystyle}>
+                        <View style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "space-between"
+                        }}>
+                            <View style={styles.deliverystyle}>
 
-                            <View style={styles.pointerstyle}>{pointerText1}</View>
-                            <Text >Confirmed ||👀</Text>
+                                <View style={styles.pointerstyle}>{pointerText1}</View>
+                                <Text >Confirmed ||👀</Text>
+
+                            </View>
+
+                            <View style={styles.deliverystyle}>
+                                <Text style={styles.pointerstyle}>{pointerText2}</Text>
+                                <Text >On the Way ||👀</Text>
+
+                            </View>
+                            <View style={styles.deliverystyle}>
+                                <View style={styles.pointerstyle}>{pointerText3}</View>
+                                <Text >Arrived 👋</Text>
+
+                            </View>
 
                         </View>
 
-                        <View style={styles.deliverystyle}>
-                            <Text style={styles.pointerstyle}>{pointerText2}</Text>
-                            <Text >On the Way ||👀</Text>
 
-                        </View>
-                        <View style={styles.deliverystyle}>
-                            <View style={styles.pointerstyle}>{pointerText3}</View>
-                            <Text >Arrived 👋</Text>
 
-                        </View>
+                        <View style={{ height: 5, width: "100%", backgroundColor: "green" }}></View>
+                        <View style={{ display: "flex", flexDirection: "row", alignSelf: "center" }}>
+
+                            {customerCare}
+                            <Text style={{ fontSize: 20, marginLeft: 10 }}>09564692647</Text></View>
+                    </View>
+                    <View style={{ width: "98%", backgroundColor: COLORS.lightblue, }}>
+
+                        <FlatList
+                            data={DATA}
+                            renderItem={renderItem}
+                            keyExtractor={item => item.id} />
 
                     </View>
-
-
-
-                    <View style={{ height: 5, width: "100%", backgroundColor: "green" }}></View>
-                    <View style={{ display: "flex", flexDirection: "row", alignSelf: "center" }}>
-
-                        {customerCare}
-                        <Text style={{ fontSize: 20, marginLeft: 10 }}>09564692647</Text></View>
                 </View>
-                <View style={{ width: "98%", backgroundColor: COLORS.lightblue, }}>
-
-                    <FlatList
-                        data={DATA}
-                        renderItem={renderItem}
-                        keyExtractor={item => item.id} />
-
-                </View>
-            </View>
 
 
-        </View >
+
+            </View >
+            <TouchableOpacity style={{
+                backgroundColor: COLORS.primaryWall,
+                height: 50,
+                width: 200,
+                alignSelf: "center",
+                alignItems: 'center',
+                display: "flex",
+                justifyContent: "center",
+                bottom: 50,
+                borderRadius: 10
+            }}>
+                <Text style={{}}>Message Delivery Guy</Text>
+            </TouchableOpacity>
+        </View>
     )
 }
 const styles = StyleSheet.create({
     maincont: {
-        flex: 1,
+        flex: -1,
         height: "100%",
         width: "100%",
         backgroundColor: COLORS.lightblue,

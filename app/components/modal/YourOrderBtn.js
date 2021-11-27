@@ -17,16 +17,16 @@ export default function YourOrderBtn({ navigation }) {
             style={{
                 display: "flex",
                 flexDirection: "row",
-                backgroundColor: COLORS.bgtheme1,
+                backgroundColor: COLORS.iphoneWhite,
                 padding: 13,
                 borderRadius: 10
             }}>
-            <Feather name="shopping-bag" size={25} color="black" />
+            <Feather name="shopping-bag" size={25} color={COLORS.green} />
             <Text style={{
                 marginLeft: 2,
                 fontWeight: "bold",
                 fontSize: 18,
-                color: COLORS.new1
+                color: COLORS.green
             }} >Your Orders</Text>
 
         </TouchableOpacity>

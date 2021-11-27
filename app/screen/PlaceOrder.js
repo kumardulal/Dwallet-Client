@@ -25,7 +25,6 @@ export default function PlaceOrder({ navigation, route }) {
 
     // this is for rendering the componet after click in confirm in model and place order
     useEffect(() => {
-
         if (modalVisible == false) {
             console.log("model was open: ", modalVisible)
             setUserConfirmModel(<Blank />)
@@ -98,8 +97,8 @@ export default function PlaceOrder({ navigation, route }) {
             // setModalVisible(true)
             if ((confirmFinishbtn === ButtonsTextName.DoneFinalstep)) {
                 /////////////////////////////////////////////I am working here........................
-                FetchOrderItems(orderItems, userdata)
-                navigation.navigate("FinishOrder")
+                FetchOrderItems(orderItems, userdata, { navigation })
+
             }
 
             else {

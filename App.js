@@ -11,6 +11,8 @@ import Checkout from './app/screen/Checkout';
 import PlaceOrder from './app/screen/PlaceOrder';
 import FinishOrder from './app/screen/FinishOrder';
 import OrderedItems from './app/screen/OrderedItems';
+import COLORS from './app/components/collections/Colors';
+import { View } from 'react-native';
 
 
 
@@ -24,28 +26,41 @@ const Stack = createStackNavigator();
 function App() {
   return (
 
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{
-        headerShown: false
-      }}>
+    <View style={{
+      height: "100%",
+      width: "100%",
+      alignSelf: "center",
+      backgroundColor: COLORS.primaryWall,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center"
+    }}>
+      <View style={{ height: "99.5%", width: "100%", alignSelf: "center", maxWidth: 600, }}>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{
+            headerShown: false
+          }}>
 
-        <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
-        <Stack.Screen name="RegistrationScreen" component={RegistrationScreen} />
-        <Stack.Screen name="HomeScreenNav" component={HomeScreenNav} />
-        <Stack.Screen name="ProductDetailScreen" component={ProductDetailScreen} />
-        <Stack.Screen name="CheckOutScreen" component={Checkout} />
-        <Stack.Screen name="PlaceOrder" component={PlaceOrder} />
-        <Stack.Screen name="FinishOrder" component={FinishOrder} />
-        <Stack.Screen name="OrderedItems" component={OrderedItems} />
+            <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
+            <Stack.Screen name="RegistrationScreen" component={RegistrationScreen} />
+            <Stack.Screen name="HomeScreenNav" component={HomeScreenNav} />
+            <Stack.Screen name="ProductDetailScreen" component={ProductDetailScreen} />
+            <Stack.Screen name="CheckOutScreen" component={Checkout} />
+            <Stack.Screen name="PlaceOrder" component={PlaceOrder} />
+            <Stack.Screen name="FinishOrder" component={FinishOrder} />
+            <Stack.Screen name="OrderedItems" component={OrderedItems} />
 
 
-        {/* useless for now  */}
-        {/* <Stack.Screen name="ProductView" component={ProductView} />
+            {/* useless for now  */}
+            {/* <Stack.Screen name="ProductView" component={ProductView} />
         <Stack.Screen name="WalletScreen" component={WalletScreen} />
         <Stack.Screen name="Imagepicker" component={ImagePicker} /> */}
 
-      </Stack.Navigator>
-    </NavigationContainer>
+          </Stack.Navigator>
+        </NavigationContainer>
+      </View>
+    </View>
+
   );
 }
 

@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import ApiAddress from './requests/ApiAddress';
 import ButtonsTextName from './collections/ButtonsTextName';
+import COLORS from './collections/Colors';
 
 
 
@@ -81,15 +82,18 @@ function CartView({ userdata, setCountCartedItem, setOrderItems }) {
         return (
             <View style={styles.emptycartcontainer}>
                 <Text style={styles.emptycart}>No Items in Cart</Text>
+
                 <TouchableOpacity
+                    style={styles.shopnowbtn}
                     onPress={() => {
                         navigation.reset({
                             index: 0,
                             routes: [{ name: 'Shop' }],
                         });
                     }}
-                    style={styles.shopnowbtn}>
+                >
                     <Image
+                        style={{ width: "90%", borderRadius: 10 }}
                         source={require("../assets/shop.png")}
                     />
                 </TouchableOpacity>
@@ -101,7 +105,6 @@ function CartView({ userdata, setCountCartedItem, setOrderItems }) {
 
     //if there is carted item in cart
     // function CartedItem() {
-
 
     //delete item from cart here
     const handledeletecartitem = (cartid) => {
@@ -443,19 +446,33 @@ const styles = StyleSheet.create({
     },
 
     emptycart: {
-        marginTop: 45,
+        top: 20,
         textAlign: 'center',
-        fontSize: 40
+        fontSize: 30,
+        color: COLORS.white,
+        fontWeight: "bold"
 
     },
     shopnowbtn: {
-        marginTop: "20%",
-
+        height: "100%",
+        width: "100%",
+        borderRadius: 20,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
     },
     emptycartcontainer: {
-        borderRadius: 50,
-        marginTop: "5%",
-        backgroundColor: "#035A85",
+        top: 40,
+        borderRadius: 20,
+        marginTop: "10%",
+        backgroundColor: COLORS.primaryWall,
+        display: "flex",
+        justifyContent: "space-around",
+        alignItems: "center",
+        width: "95%",
+        height: 220,
+        alignSelf: "center"
+
 
     },
     priceTag: {
@@ -490,7 +507,7 @@ const styles = StyleSheet.create({
     },
     plus_minus: {
         height: 35,
-        width: 30,
+        width: 35,
         backgroundColor: "#b2d9c1",
         borderRadius: 10,
         alignItems: "center",
